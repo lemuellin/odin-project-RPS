@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    color:black;
+    background-color: #E9ECEF;
+}
+
+/*-------*/
+
+#result{
+    background-color: #F8F9FA;
+    height: 300px;
+    padding: 150px;
+    text-align: center;
+}
+
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 100px 150px 100px 150px;
+
+}
+
+button:hover{
+    background-color: #EEEEEE;
+    transition: transform .15s; /* animation*/
+    transform: scale(1.2);
+}
+
+button:active{
+    background-color: #FFF0F3;
+    transform: translateY(2px);
+}
+
+.btnR{
+    background: url(/image/rock.png) no-repeat center;
+    background-color: #FFFFFF;
+    padding: 100px;
+    border: 5px solid black;
+    border-radius: 50%;
+}
+
+.btnP{
+    background: url(/image/paper.png) no-repeat center;
+    background-color: #FFFFFF;
+    padding: 100px;
+    border: 5px solid black;
+    border-radius: 50%;
+}
+
+.btnS{
+    background: url(/image/scissors.png) no-repeat center;
+    background-color: #FFFFFF;
+    padding: 100px;
+    border: 5px solid black;
+    border-radius: 50%;
+}

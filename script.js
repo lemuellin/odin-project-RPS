@@ -1,88 +1,136 @@
-let computerSelection;
-let playerSelection = window.prompt("Please input your selection: ");
+// RPS Game Logic
+
+let playerSelection;
+let playerWinCount = 0;
+let computerWinCount = 0;
+
+const div = document.querySelector('#result');
+const showResult1 = document.createElement('h1');
+const showResult2 = document.createElement('h1');
+div.appendChild(showResult1);
+div.appendChild(showResult2);
 
 
+
+// computer randomly play
 function computerPlay(){
     let randomNumber = Math.floor(Math.random()*3);
     switch (randomNumber){
     case 0:
-        return computerSelection = "Rock";
+        return "Rock";
         break;
     case 1:
-        return computerSelection = "Paper";
+        return "Paper";
         break;
     case 2:
-        return computerSelection = "Scissors";
+        return "Scissors";
         break;
     }
 }
-/*console.log(computerPlay());*/
 
+// read player selection and compare it with computer selection for 1 round
+function playRound(playerSelection){
 
-function playRound(playerSelection, computerSelection){
-    /*force to make all inputs to the same format*/
-    playerSelection = playerSelection.toUpperCase();
-    computerSelection = computerSelection.toUpperCase();
+    if (playerSelection){
+        
+        /*force to make all inputs to the same format*/
+        let computerSelection = computerPlay();
+        playerSelection = playerSelection.toUpperCase();
+        computerSelection = computerSelection.toUpperCase();
+        
+        //console.log(playerSelection, computerSelection);
 
-    /*assign ROCK = 1, PAPER = 2, SCISSORS = 3*/
-    if (playerSelection == "ROCK"){
-        playerSelection = 1;
-    }else if (playerSelection == "PAPER"){
-        playerSelection = 2;
-    }else{
-        playerSelection = 3;
-    }
+        /*assign ROCK = 1, PAPER = 2, SCISSORS = 3*/
+        let pStemp, cStemp
+        if (playerSelection == "ROCK"){
+            pStemp = 1;
+        }else if (playerSelection == "PAPER"){
+            pStemp = 2;
+        }else{
+            pStemp = 3;
+        }
 
-    if (computerSelection == "ROCK"){
-        computerSelection = 1;
-    }else if (computerSelection == "PAPER"){
-        computerSelection = 2;
-    }else{
-        computerSelection = 3;
+        if (computerSelection == "ROCK"){
+            cStemp = 1;
+        }else if (computerSelection == "PAPER"){
+            cStemp = 2;
+        }else{
+            cStemp = 3;
+        }
+        
+        /*3>2>1, but 1>3*/
+        if (pStemp == cStemp){
+        return `It is a draw, you both played: ${playerSelection}. Current score: ${++playerWinCount}${++computerWinCount}`;
+        }else if (pStemp == 1 && cStemp ==3){
+        return `You win! ${playerSelection} beat ${computerSelection}. Current score: ${++playerWinCount}${computerWinCount}`;
+        }else if (pStemp == 3 && cStemp ==1){
+        return `You lose! ${computerSelection} beat ${playerSelection}. Current score: ${playerWinCount}${++computerWinCount}`;
+        }else if (pStemp > cStemp){
+        return `You win! ${playerSelection} beat ${computerSelection}. Current score: ${++playerWinCount}${computerWinCount}`;
+        }else{
+        return `You lose! ${computerSelection} beat ${playerSelection}. Current score: ${playerWinCount}${++computerWinCount}`;
+        }
+
     }
     
-    /*3>2>1, but 1>3*/
-    if (playerSelection == computerSelection){
-    return "It is a draw";
-    }else if (playerSelection == 1 && computerSelection ==3){
-    return "You win!";
-    }else if (playerSelection == 3 && computerSelection ==1){
-    return "You lose!";
-    }else if (playerSelection > computerSelection){
-    return "You win!";
-    }else{
-    return "You lose!";
-    }
 }
-/*console.log(playRound(playerSelection, computerSelection));*/
+
+// Show results
+function results(string){
+    showResult1.textContent = playRound(string);
+    showResult2.textContent = game();
+}
+
+// play five rounds and record the winner
 
 function game(){
-    let playerWinCount = 0;
-    let computerWinCount = 0;
-
-    
-    for (let i=0; i<5; i++){
-        computerPlay();
-        playRound(playerSelection, computerSelection);
-
-        if (playRound(playerSelection, computerSelection)=="You win!"){
-            playerWinCount++;
-            console.log("You played " + playerSelection + ", computer played " + computerSelection + ", so you win!");
-        }else if (playRound(playerSelection, computerSelection)=="You lose!"){
-            computerWinCount++;
-            console.log("You played " + playerSelection + ", computer played " + computerSelection + ", so you lose!");
-        }else{
-            console.log("You played " + playerSelection + ", computer played " + computerSelection + ", so it is a draw!");
-        }
-    }
-
-    if (playerWinCount>computerWinCount){
-        return "You win! Score:" + playerWinCount + ":" + computerWinCount;
-    }else if (playerWinCount<computerWinCount){
-        return "You lose! Score:" + playerWinCount + ":" + computerWinCount;
-    }else{
-        return "It is a draw! Score:" + playerWinCount + ":" + computerWinCount;
+    if (playerWinCount!=0 || computerWinCount!=0){
+        let gameResult;
+        if (playerWinCount==5){
+                gameResult = "You win! Score:" + playerWinCount + ":" + computerWinCount;
+                playerWinCount = 0;
+                computerWinCount = 0;
+                return gameResult;
+            }else if (computerWinCount==5){
+                gameResult = "You lose! Score:" + playerWinCount + ":" + computerWinCount;
+                playerWinCount = 0;
+                computerWinCount = 0;
+                return gameResult;
+            }
+        return "";
     }
 }
 
-console.log(game());
+
+// Button
+const btnR = document.querySelector('.btnR');
+btnR.addEventListener('click', ()=>{results("rock"); game()});
+
+const btnP = document.querySelector('.btnP');
+btnP.addEventListener('click', ()=>{results("paper")});
+
+const btnS = document.querySelector('.btnS');
+btnS.addEventListener('click', ()=>{results("scissors")});
+
+
+
+
+/*
+I'd probably prefer to do something like this:
+
+playRoundHandler(event) {
+  playRound(event.target.value);
+}
+
+rockButton.addEventListener('click', playRoundHandler)
+and attach the value to your button itself
+<button value="ROCK" />
+if you do that, you can use event delegation
+https://stackoverflow.com/questions/1687296/what-is-dom-event-delegation
+Stack Overflow
+What is DOM Event delegation?
+Can anyone please explain event delegation in JavaScript and how is it useful?
+Image
+and really simplify your code
+One event listener to handle all your RPS buttons 
+*/
