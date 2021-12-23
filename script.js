@@ -86,17 +86,22 @@ function results(string){
 function game(){
     if (playerWinCount!=0 || computerWinCount!=0){
         let gameResult;
-        if (playerWinCount==5){
-                gameResult = "You win! Score:" + playerWinCount + ":" + computerWinCount;
-                playerWinCount = 0;
-                computerWinCount = 0;
-                return gameResult;
-            }else if (computerWinCount==5){
-                gameResult = "You lose! Score:" + playerWinCount + ":" + computerWinCount;
-                playerWinCount = 0;
-                computerWinCount = 0;
-                return gameResult;
-            }
+        if (playerWinCount==5 && computerWinCount ==5){
+            gameResult = "It is a draw! Score:" + playerWinCount + ":" + computerWinCount;
+            playerWinCount = 0;
+            computerWinCount = 0;
+            return gameResult;
+        } else if (playerWinCount==5){
+            gameResult = "You win! Score:" + playerWinCount + ":" + computerWinCount;
+            playerWinCount = 0;
+            computerWinCount = 0;
+            return gameResult;
+        }else if (computerWinCount==5){
+            gameResult = "You lose! Score:" + playerWinCount + ":" + computerWinCount;
+            playerWinCount = 0;
+            computerWinCount = 0;
+            return gameResult;
+        }
         return "";
     }
 }
