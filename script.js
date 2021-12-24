@@ -92,7 +92,7 @@ function game(){
             computerWinCount = 0;
             return gameResult;
         }else if (playerWinCount==5){
-            gameResult = "TIFFY IS THE BEST! Score: " + playerWinCount + " : " + computerWinCount;
+            gameResult = "YOU ARE THE ULTIMATE CHAMPION! Score: " + playerWinCount + " : " + computerWinCount;
             playerWinCount = 0;
             computerWinCount = 0;
             return gameResult;
