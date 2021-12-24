@@ -16,11 +16,18 @@ body{
 
 /*-------*/
 
+.header{
+    text-align: center;
+    padding: 20px;
+}
+
 #result{
     background-color: #F8F9FA;
     height: 300px;
-    padding: 150px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn{

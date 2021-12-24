@@ -91,13 +91,13 @@ function game(){
             playerWinCount = 0;
             computerWinCount = 0;
             return gameResult;
-        } else if (playerWinCount==5){
-            gameResult = "You win! Score:" + playerWinCount + ":" + computerWinCount;
+        }else if (playerWinCount==5){
+            gameResult = "TIFFY is the BEST! Score:" + playerWinCount + ":" + computerWinCount;
             playerWinCount = 0;
             computerWinCount = 0;
             return gameResult;
         }else if (computerWinCount==5){
-            gameResult = "You lose! Score:" + playerWinCount + ":" + computerWinCount;
+            gameResult = "LOSERRR! Score:" + playerWinCount + ":" + computerWinCount;
             playerWinCount = 0;
             computerWinCount = 0;
             return gameResult;
