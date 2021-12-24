@@ -60,15 +60,15 @@ function playRound(playerSelection){
         
         /*3>2>1, but 1>3*/
         if (pStemp == cStemp){
-        return `It is a draw, you both played: ${playerSelection}. Current score: ${++playerWinCount}${++computerWinCount}`;
+        return `It is a draw, you both played: ${playerSelection}. Current score: ${++playerWinCount} : ${++computerWinCount}`;
         }else if (pStemp == 1 && cStemp ==3){
-        return `You win! ${playerSelection} beat ${computerSelection}. Current score: ${++playerWinCount}${computerWinCount}`;
+        return `You win! ${playerSelection} beat ${computerSelection}. Current score: ${++playerWinCount} : ${computerWinCount}`;
         }else if (pStemp == 3 && cStemp ==1){
-        return `You lose! ${computerSelection} beat ${playerSelection}. Current score: ${playerWinCount}${++computerWinCount}`;
+        return `You lose! ${computerSelection} beat ${playerSelection}. Current score: ${playerWinCount} : ${++computerWinCount}`;
         }else if (pStemp > cStemp){
-        return `You win! ${playerSelection} beat ${computerSelection}. Current score: ${++playerWinCount}${computerWinCount}`;
+        return `You win! ${playerSelection} beat ${computerSelection}. Current score: ${++playerWinCount} : ${computerWinCount}`;
         }else{
-        return `You lose! ${computerSelection} beat ${playerSelection}. Current score: ${playerWinCount}${++computerWinCount}`;
+        return `You lose! ${computerSelection} beat ${playerSelection}. Current score: ${playerWinCount} : ${++computerWinCount}`;
         }
 
     }
@@ -87,17 +87,17 @@ function game(){
     if (playerWinCount!=0 || computerWinCount!=0){
         let gameResult;
         if (playerWinCount==5 && computerWinCount ==5){
-            gameResult = "It is a draw! Score:" + playerWinCount + ":" + computerWinCount;
+            gameResult = "It is a draw! Score: " + playerWinCount + " : " + computerWinCount;
             playerWinCount = 0;
             computerWinCount = 0;
             return gameResult;
         }else if (playerWinCount==5){
-            gameResult = "TIFFY is the BEST! Score:" + playerWinCount + ":" + computerWinCount;
+            gameResult = "TIFFY IS THE BEST! Score: " + playerWinCount + " : " + computerWinCount;
             playerWinCount = 0;
             computerWinCount = 0;
             return gameResult;
         }else if (computerWinCount==5){
-            gameResult = "LOSERRR! Score:" + playerWinCount + ":" + computerWinCount;
+            gameResult = "LOSERRR! Score: " + playerWinCount + " : " + computerWinCount;
             playerWinCount = 0;
             computerWinCount = 0;
             return gameResult;
